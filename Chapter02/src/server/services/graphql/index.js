@@ -1,5 +1,7 @@
+/* eslint-disable linebreak-style */
 import { ApolloServer } from 'apollo-server-express';
-import {makeExecutableSchema} from 'graphql-tools';
+import { makeExecutableSchema } from 'graphql-tools';
+
 import Resolvers from './resolvers';
 import Schema from './schema';
 
@@ -10,6 +12,12 @@ const executableSchema = makeExecutableSchema({
 
 const server = new ApolloServer({
   schema: executableSchema,
+  //  added next block
+  playground: {
+    settings: {
+      'editor.theme': 'light',
+    },
+  },
   context: ({ req }) => req,
 });
 

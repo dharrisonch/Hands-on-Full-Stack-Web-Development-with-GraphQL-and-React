@@ -1,9 +1,10 @@
+/* eslint-disable linebreak-style */
 module.exports = {
   "development": {
-    "username": "devuser",
-    "password": "Test1234%",
+    "username": "dharrison_ch",
+    "password": "Sea*Turtle2020]]",
     "database": "graphbook_dev",
-    "host": "192.168.2.107",
+    "host": "localhost",
     "dialect": "mysql",
     "operatorsAliases": false,
     "pool": {

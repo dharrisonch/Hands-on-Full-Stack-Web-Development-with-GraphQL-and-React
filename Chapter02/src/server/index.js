@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 import express from 'express';
 import path from 'path';
 import helmet from 'helmet';
@@ -8,19 +9,21 @@ import services from './services';
 const root = path.join(__dirname, '../../');
 const app = express();
 
-if(process.env.NODE_ENV === 'production') {
-    app.use(helmet());
-    app.use(helmet.contentSecurityPolicy({
-        directives: {
-            defaultSrc: ["'self'"],
-            scriptSrc: ["'self'", "'unsafe-inline'"],
-            styleSrc: ["'self'", "'unsafe-inline'"],
-            imgSrc: ["'self'", "data:", "*.amazonaws.com"]
-        }
-    }));
-    app.use(compress());
-    app.use(cors());
+//  Only use Helmet if we are in production
+if (process.env.NODE_ENV === 'production') {
+  app.use(helmet());
+  app.use(helmet.contentSecurityPolicy({
+    directives: {
+      defaultSrc: ["'self'"],
+      scriptSrc: ["'self'", "'unsafe-inline'"],
+      styleSrc: ["'self'", "'unsafe-inline'"],
+      imgSrc: ["'self'", "data:", "*.amazonaws.com"]
+    }
+  }));
+  app.use(compress());
+  app.use(cors());
 }
+
 
 app.use(helmet.referrerPolicy({ policy: 'same-origin' }));
 app.use('/', express.static(path.join(root, 'dist/client')));
@@ -36,7 +39,12 @@ for (let i = 0; i < serviceNames.length; i += 1) {
   }
 }
 
+//  next statement referenced on p41 of book but the file
+//  referenced does not exist until (npm run client:build)
 app.get('/', (req, res) => {
-    res.sendFile(path.join(root, '/dist/client/index.html'));
+  res.sendFile(path.join(root, '/dist/client/index.html'));
+//  used next statement as a first step - works!
+// app.get('/', (req, res) => {
+//   res.send('Hello World!');
 });
 app.listen(8000, () => console.log('Listening on port 8000!'));

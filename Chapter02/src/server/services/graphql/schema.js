@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 const typeDefinitions = `
   type Post {
     id: Int

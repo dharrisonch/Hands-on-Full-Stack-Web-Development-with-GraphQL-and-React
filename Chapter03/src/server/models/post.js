@@ -1,11 +1,10 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  var Post = sequelize.define('Post', {
-    text: DataTypes.TEXT,
-    userId:  DataTypes.INTEGER,
+  const Post = sequelize.define('Post', {
+    test: DataTypes.TEXT
   }, {});
   Post.associate = function(models) {
-    Post.belongsTo(models.User);
+    // associations can be defined here
   };
   return Post;
 };
